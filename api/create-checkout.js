@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   if (plan === 'monthly') {
     priceId = 'price_1TUgrd739irbxgcRTwc75MCP';
   } else if (plan === 'yearly') {
-    priceId = 'price_1TUh01739irbxgcRcuXcBzGX';
+    priceId = 'NUEVO_PRICE_ID_AQUI'; // Reemplaza con el nuevo priceId
   } else {
     return res.status(400).json({ error: 'Plan no válido' });
   }
@@ -24,7 +24,6 @@ module.exports = async (req, res) => {
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: 'https://hexafood.app/success',
       cancel_url: 'https://hexafood.app/cancel',
-      metadata: { plan }
     });
 
     return res.status(200).json({ url: session.url });
