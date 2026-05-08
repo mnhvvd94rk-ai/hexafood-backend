@@ -7,9 +7,15 @@ module.exports = async (req, res) => {
   }
 
   const { plan } = req.body;
-  const priceId = plan === 'monthly' 
-    ? 'price_1TUgrd739irbxgcRTwc75MCP'
-    : 'price_1TUh01739irbxgcRcuXcBzGX';
+  let priceId;
+
+  if (plan === 'monthly') {
+    priceId = 'price_1TUgrd739irbxgcRTwc75MCP';
+  } else if (plan === 'yearly') {
+    priceId = 'price_1TUh01739irbxgcRcuXcBzGX';
+  } else {
+    return res.status(400).json({ error: 'Plan no válido' });
+  }
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -18,11 +24,12 @@ module.exports = async (req, res) => {
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: 'https://hexafood.app/success',
       cancel_url: 'https://hexafood.app/cancel',
+      metadata: { plan }
     });
 
     return res.status(200).json({ url: session.url });
   } catch (err) {
-    console.error(err);
+    console.error('Stripe error:', err.message);
     return res.status(500).json({ error: err.message });
   }
 };
