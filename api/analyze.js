@@ -95,7 +95,7 @@ app.post('/api/analyze', async (req, res) => {
 
 module.exports = app;
 const Stripe = require('stripe');
-const stripe = Stripe('TU_SECRET_KEY_AQUI'); // Reemplaza con tu secret key
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY); // Reemplaza con tu secret key
 
 app.post('/api/create-checkout', async (req, res) => {
   const { userId, plan } = req.body;
@@ -112,4 +112,31 @@ app.post('/api/create-checkout', async (req, res) => {
   });
   
   res.json({ url: session.url });
+});
+
+// Stripe
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+app.post('/api/create-checkout', async (req, res) => {
+  const { userId, plan } = req.body;
+  
+  const priceId = plan === 'monthly' 
+    ? 'price_1TUgrd739irbxgcRTwc75MCP'   // mensual $2.99
+    : 'price_1TUh01739irbxgcRcuXcBzGX';  // anual $19.99
+  
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'subscription',
+      payment_method_types: ['card'],
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: 'https://hexafood-app.web.app/success',
+      cancel_url: 'https://hexafood-app.web.app/cancel',
+      metadata: { userId }
+    });
+    
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error('Stripe error:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
