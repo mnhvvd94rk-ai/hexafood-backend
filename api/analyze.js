@@ -7,7 +7,11 @@ app.use(cors());
 app.use(express.json());
 
 const SFC_DB = {
-  "harina de coco": { total:9, ob:2, me:1, pb:2, li:1, gl:2, sa:1 },
+  "jengibre": { total:11, ob:2, me:2, pb:2, li:1, gl:2, sa:2 },
+  "cacao": { total:10, ob:2, me:2, pb:2, li:2, gl:1, sa:1 },
+  "maca": { total:7, ob:1, me:2, pb:1, li:1, gl:1, sa:1 },
+  "espirulina": { total:13, ob:2, me:3, pb:2, li:3, gl:2, sa:1 },
+  "amaranto": { total:12, ob:2, me:2, pb:3, li:2, gl:1, sa:2 },  "harina de coco": { total:9, ob:2, me:1, pb:2, li:1, gl:2, sa:1 },
   "coco": { total:9, ob:2, me:1, pb:2, li:1, gl:2, sa:1 },
   "coconut": { total:9, ob:2, me:1, pb:2, li:1, gl:2, sa:1 },
   "fibra de agave": { total:15, ob:3, me:3, pb:3, li:2, gl:2, sa:2 },
