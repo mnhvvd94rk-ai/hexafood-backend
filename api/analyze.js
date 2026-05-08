@@ -19,7 +19,14 @@ const SFC_DB = {
 };
 
 const productDB = {
-  "test001": { product_name: "Test Harina de Coco", ingredients_text: "harina de coco" },
+  "7501055301106": { product_name: "Coca-Cola 600ml", ingredients_text: "agua carbonatada, azúcar, cafeína" },
+  "7622300443120": { product_name: "Galletas María", ingredients_text: "harina de trigo, azúcar, fibra de agave" },
+  "8410033013519": { product_name: "Leche Entera", ingredients_text: "leche, vitamina d" },
+  "5000112529634": { product_name: "Chocolate Oscuro 70%", ingredients_text: "cacao, azúcar, manteca de cacao" },
+  "test002": { product_name: "Test Fibra de Agave", ingredients_text: "fibra de agave" },
+  "test003": { product_name: "Test Curcumina", ingredients_text: "curcumina" },
+  "test004": { product_name: "Test Espirulina", ingredients_text: "espirulina" },
+  "test005": { product_name: "Test Jengibre", ingredients_text: "jengibre" },  "test001": { product_name: "Test Harina de Coco", ingredients_text: "harina de coco" },
   "041512164019": { product_name: "Harina de Coco Orgánica", ingredients_text: "harina de coco" },
   "8480000101016": { product_name: "Harina de Coco Ecológica", ingredients_text: "coconut flour" }
 };
